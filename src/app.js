@@ -12,6 +12,7 @@ const app = express();
 app.use(express.json());
 
 import TodoRoutes from './routes/todos.js';
+import { routeNotFound } from './middleware/routeNotFound.js';
 
 app.get('/', (request, response) => {
 	response
@@ -20,5 +21,7 @@ app.get('/', (request, response) => {
 });
 
 app.use('/api/v1/todos', TodoRoutes);
+
+app.use(routeNotFound);
 
 export default app;

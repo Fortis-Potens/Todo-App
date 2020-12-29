@@ -2,7 +2,7 @@
   "name": "todo-app",
   "version": "1.0.0",
   "type": "module",
-  "description": "A simple todo api application",
+  "description": "A simple Nodejs Todo RESTful API application",
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server.js",
