@@ -9,6 +9,8 @@ connectDB();
 
 const app = express();
 
+app.use(express.json());
+
 import TodoRoutes from './routes/todos.js';
 
 app.get('/', (request, response) => {
