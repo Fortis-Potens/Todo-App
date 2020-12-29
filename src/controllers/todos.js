@@ -95,3 +95,22 @@ export const updateTodo = async (request, response, next) => {
 		console.log(error.message);
 	}
 };
+
+// @description     Delete single todo
+// @route           DELETE /api/v1/todos/:id
+// @access          Public
+export const deleteTodo = async (request, response, next) => {
+	try {
+		const todo = await Todo.findByIdAndDelete(request.params.id);
+
+		if (!todo) {
+			return response.status(404).json({
+				success: false,
+				message: `Todo with id ${request.params.id} not found!`,
+			});
+		}
+		response.status(200).json({ success: true, data: {} });
+	} catch (error) {
+		console.log(error.message);
+	}
+};

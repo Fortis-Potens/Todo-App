@@ -16,7 +16,6 @@ describe('CRUD for Todo API application', () => {
 			await Todo.deleteMany();
 			await Todo.insertMany(todos);
 		});
-
 		it('should fetch all todos in the Application', async () => {
 			const response = await chai.request(app).get(`${appURL}`);
 
@@ -174,6 +173,37 @@ describe('CRUD for Todo API application', () => {
 			expect(response.body.success).to.equals(true);
 			expect(response.body.data).to.be.an('object');
 			expect(response.body.data.name).to.equals(updateTodo.name);
+		});
+	});
+
+	describe('DELETE /api/v1/todos/:id', () => {
+		beforeEach(async () => {
+			await Todo.deleteMany();
+			await Todo.insertMany(todos);
+		});
+
+		it('should not delete a single todo if id is not found', async () => {
+			const response = await chai
+				.request(app)
+				.delete(`${appURL}/5feb42de000001a0c899770c`);
+			expect(response.status).to.eq(404);
+			expect(response.body.success).to.equals(false);
+			expect(response.body.message).to.equals(
+				`Todo with id 5feb42de000001a0c899770c not found!`
+			);
+		});
+
+		it('should delete a todo in the Application', async () => {
+			const todos = await Todo.find();
+
+			const response = await chai
+				.request(app)
+				.delete(`${appURL}/${todos[0]._id}`);
+
+			expect(response.status).to.eq(200);
+			expect(response.body.success).to.equals(true);
+			expect(response.body.data).to.be.an('object');
+			expect(response.body.data).to.eql({});
 		});
 	});
 });
