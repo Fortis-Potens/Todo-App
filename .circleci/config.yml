@@ -11,8 +11,9 @@ jobs:
             npm install --save
       - run:
           name: Run Unit Tests
+          no_output_timeout: 30m
           command: |
-            ./node_modules/mocha/bin/mocha src/test/
+            npm run test
 workflows:
   build_test:
     jobs:
