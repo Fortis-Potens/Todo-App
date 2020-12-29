@@ -1,8 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: '../config/config.env' });
 
 import app from '../app.js';
 
