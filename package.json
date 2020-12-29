@@ -12,11 +12,15 @@
     "test": "mocha src/test/**.spec.js --timeout 20000 --exit",
     "pre-test": "npm run data:import"
   },
+  "engines": {
+    "node": "14.15.3"
+  },
   "author": "Fortis",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mochawesome": "^6.2.1",
     "mongoose": "^5.11.9"
   },
   "devDependencies": {
