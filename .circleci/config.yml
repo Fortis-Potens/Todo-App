@@ -1,5 +1,5 @@
 version: 2.1
-job:
+jobs:
   run_tests:
     docker:
       - image: circle/node:14
