@@ -12,11 +12,7 @@ jobs:
       - run:
           name: Run Unit Tests
           command: |
-            ./node_modules/mocha/bin/mocha src/test/ --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results
-      - store_test_results:
-          path: test-results
-      - store_artifacts:
-          path: test-results
+            ./node_modules/mocha/bin/mocha src/test/
 workflows:
   build_test:
     jobs:
