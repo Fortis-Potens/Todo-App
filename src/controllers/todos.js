@@ -62,3 +62,36 @@ export const createTodo = async (request, response, next) => {
 		response.status(500).json({ success: false, error: error.message });
 	}
 };
+
+// @description     Update single todo
+// @route           PUT /api/v1/todos/:id
+// @access          Public
+export const updateTodo = async (request, response, next) => {
+	try {
+		let todo = await Todo.findById(request.params.id);
+		if (!todo) {
+			return response.status(404).json({
+				success: false,
+				message: `Todo with id ${request.params.id} not found!`,
+			});
+		}
+		if (!request.body.name || request.body.name === '') {
+			return response
+				.status(400)
+				.json({ success: false, message: 'Please enter a todo' });
+		}
+		if (request.body.name.length < 3) {
+			return response.status(400).json({
+				success: false,
+				message: 'Please enter a todo name with minimum of 3 characters',
+			});
+		}
+		todo = await Todo.findByIdAndUpdate(request.params.id, request.body, {
+			new: true,
+			runValidators: true,
+		});
+		response.status(200).json({ success: true, data: todo });
+	} catch (error) {
+		console.log(error.message);
+	}
+};
