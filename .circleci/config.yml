@@ -11,7 +11,6 @@ jobs:
             npm install --save
       - run:
           name: Run Unit Tests
-          no_output_timeout: 30m
           command: |
             npm run test
 workflows:
