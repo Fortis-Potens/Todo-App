@@ -60,7 +60,6 @@ To clone this repository:
 
 ### Author
 
-```
-* Name: Tobechukwu Obitube
-* Email: fortispotens.gmail.com
-```
+| Name:  | Tobechukwu Obitube     |
+| ------ | ---------------------- |
+| Email: | fortispotens@gmail.com |
