@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: './config/config.env' });
@@ -15,9 +16,7 @@ import TodoRoutes from './routes/todos.js';
 import { routeNotFound } from './middleware/routeNotFound.js';
 
 app.get('/', (request, response) => {
-	response
-		.status(200)
-		.json({ success: true, message: `Welcome to our Todo API` });
+	response.status(200).sendFile(path.resolve('public/index.html'));
 });
 
 app.use('/api/v1/todos', TodoRoutes);

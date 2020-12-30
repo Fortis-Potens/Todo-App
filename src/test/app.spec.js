@@ -15,8 +15,6 @@ describe('Todo API Server', () => {
 			.get('/')
 			.end((error, response) => {
 				expect(response.status).to.eq(200);
-				expect(response.body.success).to.equals(true);
-				expect(response.body.message).to.equal('Welcome to our Todo API');
 				done();
 			});
 	});
