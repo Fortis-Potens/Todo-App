@@ -1,11 +1,10 @@
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: './config/config.env' });
 
 import connectDB from './config/connectDB.js';
 import Todo from './src/models/Todo.js';
-import todos from './data/todos.js';
+import todos from './src/data/todos.js';
 
 connectDB();
 
