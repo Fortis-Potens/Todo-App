@@ -22,12 +22,6 @@ export const getOneTodo = async (request, response, next) => {
 	try {
 		const todo = await Todo.findById(request.params.id);
 
-		if (!todo) {
-			return response.status(404).json({
-				success: false,
-				message: `Todo with id ${request.params.id} not found!`,
-			});
-		}
 		response.status(200).json({ success: true, data: todo });
 	} catch (error) {
 		response.status(500).json({ success: false, error: error.message });
@@ -39,19 +33,6 @@ export const getOneTodo = async (request, response, next) => {
 // @access          Public
 export const createTodo = async (request, response, next) => {
 	try {
-		if (!request.body.name || request.body.name === '') {
-			return response
-				.status(400)
-				.json({ success: false, message: 'Please enter a todo' });
-		}
-
-		if (request.body.name.length < 3) {
-			return response.status(400).json({
-				success: false,
-				message: 'Please enter a todo name with minimum of 3 characters',
-			});
-		}
-
 		const todo = await Todo.create(request.body);
 
 		response.status(201).json({
@@ -59,6 +40,11 @@ export const createTodo = async (request, response, next) => {
 			data: todo,
 		});
 	} catch (error) {
+		if (error.code === 11000) {
+			return response
+				.status(400)
+				.json({ success: false, error: 'Todo name already exist' });
+		}
 		response.status(500).json({ success: false, error: error.message });
 	}
 };
@@ -68,29 +54,15 @@ export const createTodo = async (request, response, next) => {
 // @access          Public
 export const updateTodo = async (request, response, next) => {
 	try {
-		let todo = await Todo.findById(request.params.id);
-		if (!todo) {
-			return response.status(404).json({
-				success: false,
-				message: `Todo with id ${request.params.id} not found!`,
-			});
-		}
-		if (!request.body.name || request.body.name === '') {
-			return response
-				.status(400)
-				.json({ success: false, message: 'Please enter a todo' });
-		}
-		if (request.body.name.length < 3) {
-			return response.status(400).json({
-				success: false,
-				message: 'Please enter a todo name with minimum of 3 characters',
-			});
-		}
-		todo = await Todo.findByIdAndUpdate(request.params.id, request.body, {
-			new: true,
-			runValidators: true,
-		});
-		response.status(200).json({ success: true, data: todo });
+		const updateTodo = await Todo.findByIdAndUpdate(
+			request.params.id,
+			request.body,
+			{
+				new: true,
+				runValidators: true,
+			}
+		);
+		response.status(200).json({ success: true, data: updateTodo });
 	} catch (error) {
 		console.log(error.message);
 	}
@@ -101,15 +73,11 @@ export const updateTodo = async (request, response, next) => {
 // @access          Public
 export const deleteTodo = async (request, response, next) => {
 	try {
-		const todo = await Todo.findByIdAndDelete(request.params.id);
+		await Todo.findByIdAndDelete(request.params.id);
 
-		if (!todo) {
-			return response.status(404).json({
-				success: false,
-				message: `Todo with id ${request.params.id} not found!`,
-			});
-		}
-		response.status(200).json({ success: true, data: {} });
+		response
+			.status(200)
+			.json({ success: true, message: 'Todo deleted!', data: {} });
 	} catch (error) {
 		console.log(error.message);
 	}

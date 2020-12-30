@@ -39,15 +39,12 @@ describe('CRUD for Todo API application', () => {
 
 			expect(response.status).to.eq(404);
 			expect(response.body.success).to.equals(false);
-			expect(response.body.message).to.equals(
-				`Todo with id 5feb42de000001a0c899770c not found!`
-			);
+			expect(response.body.message).to.equals(`Todo not found!`);
 		});
 
 		it('should fetch single todo in the Application', async () => {
 			const todos = await Todo.find();
 			const response = await chai.request(app).get(`${appURL}/${todos[0]._id}`);
-
 			expect(response.status).to.eq(200);
 			expect(response.body.success).to.equals(true);
 			expect(response.body.data).to.be.an('object');
@@ -114,11 +111,10 @@ describe('CRUD for Todo API application', () => {
 			const response = await chai
 				.request(app)
 				.put(`${appURL}/5feb42de000001a0c899770c`);
+
 			expect(response.status).to.eq(404);
 			expect(response.body.success).to.equals(false);
-			expect(response.body.message).to.equals(
-				`Todo with id 5feb42de000001a0c899770c not found!`
-			);
+			expect(response.body.message).to.equals(`Todo not found!`);
 		});
 
 		it('should not update a single todo without a name', async () => {
@@ -169,6 +165,7 @@ describe('CRUD for Todo API application', () => {
 				.request(app)
 				.put(`${appURL}/${todos[0]._id}`)
 				.send(updateTodo);
+
 			expect(response.status).to.eq(200);
 			expect(response.body.success).to.equals(true);
 			expect(response.body.data).to.be.an('object');
@@ -188,9 +185,7 @@ describe('CRUD for Todo API application', () => {
 				.delete(`${appURL}/5feb42de000001a0c899770c`);
 			expect(response.status).to.eq(404);
 			expect(response.body.success).to.equals(false);
-			expect(response.body.message).to.equals(
-				`Todo with id 5feb42de000001a0c899770c not found!`
-			);
+			expect(response.body.message).to.equals(`Todo not found!`);
 		});
 
 		it('should delete a todo in the Application', async () => {
@@ -203,7 +198,7 @@ describe('CRUD for Todo API application', () => {
 			expect(response.status).to.eq(200);
 			expect(response.body.success).to.equals(true);
 			expect(response.body.data).to.be.an('object');
-			expect(response.body.data).to.eql({});
+			expect(response.body.message).to.eql('Todo deleted!');
 		});
 	});
 });
