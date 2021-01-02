@@ -6,7 +6,10 @@ import {
 	updateTodo,
 	deleteTodo,
 } from '../controllers/todos.js';
-import { validateBody, validateParams } from '../middleware/validateInput.js';
+import {
+	validateBody,
+	validateParams,
+} from '../middleware/validateTodoInput.js';
 import findOne from '../utils/findOne.js';
 
 const router = express.Router();
