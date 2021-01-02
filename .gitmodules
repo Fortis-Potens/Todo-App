@@ -1,0 +1,3 @@
+[submodule "messageQueue"]
+	path = messageQueue
+	url = https://github.com/Fortis-Potens/Email-Node-RabbitMQ.git

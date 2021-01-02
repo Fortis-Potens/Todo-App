@@ -14,8 +14,10 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 import TodoRoutes from './routes/todos.js';
+import EmailRoutes from './routes/emails.js';
 import { routeNotFound } from './middleware/routeNotFound.js';
 
 app.get('/', (request, response) => {
@@ -23,6 +25,7 @@ app.get('/', (request, response) => {
 });
 
 app.use('/api/v1/todos', TodoRoutes);
+app.use('/api/v1/email', EmailRoutes);
 
 app.use(routeNotFound);
 

@@ -4,6 +4,7 @@ dotenv.config({ path: './config/config.env' });
 
 import connectDB from './config/connectDB.js';
 import Todo from './src/models/Todo.js';
+import Email from './src/models/Email.js';
 import todos from './src/data/todos.js';
 
 connectDB();
@@ -11,6 +12,7 @@ connectDB();
 const importData = async () => {
 	try {
 		await Todo.deleteMany();
+		await Email.deleteMany();
 
 		await Todo.insertMany(todos);
 
@@ -25,6 +27,7 @@ const importData = async () => {
 const destroyData = async () => {
 	try {
 		await Todo.deleteMany();
+		await Email.deleteMany();
 
 		console.log(`Data Destroyed!`);
 		process.exit();
