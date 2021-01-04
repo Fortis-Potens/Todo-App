@@ -41,6 +41,11 @@ https://fortispotens.herokuapp.com/
 | PUT       | api/v2/todos/:id | Update a specific Todo        |
 | POST      | api/v2/email     | Send email to an invited user |
 
+The POST (Send email to an invited user) endpoint makes a call to a Message Queue service hosted on https://github.com/fortispotens/Email-Node-RabbitMQ
+This service is built with RabbitMQ service (Amqplib) and AWS SES mail service.
+
+Live URL: https://nodemq.herokuapp.com/
+
 ### How to clone the project:
 
 To clone this repository:
@@ -56,7 +61,7 @@ To clone this repository:
 
 - Run `npm start` to start the server.
 
-- Follow the API endpoints above to test the Application.
+- Follow the [Todo API endpoints documentation!](https://fortispotens.herokuapp.com/) to test the Application.
 ```
 
 ### Author
