@@ -31,14 +31,15 @@ https://fortispotens.herokuapp.com/
 
 ### API endpoints
 
-| HTTP VERB | ENDPOINT         | FUCTIONALITY            |
-| --------- | ---------------- | ----------------------- |
-| GET       | /                | Goto Todo API Home page |
-| POST      | api/v2/todos     | Create a new Todo       |
-| GET       | api/v2/todos     | Fetch all Todos         |
-| GET       | api/v2/todos/:id | Fetch a specific Todo   |
-| DELETE    | api/v2/todos/:id | Delete a specific Todo  |
-| PUT       | api/v2/todos/:id | Update a specific Todo  |
+| HTTP VERB | ENDPOINT         | FUCTIONALITY                  |
+| --------- | ---------------- | ----------------------------- |
+| GET       | /                | Goto Todo API Home page       |
+| POST      | api/v2/todos     | Create a new Todo             |
+| GET       | api/v2/todos     | Fetch all Todos               |
+| GET       | api/v2/todos/:id | Fetch a specific Todo         |
+| DELETE    | api/v2/todos/:id | Delete a specific Todo        |
+| PUT       | api/v2/todos/:id | Update a specific Todo        |
+| POST      | api/v2/email     | Send email to an invited user |
 
 ### How to clone the project:
 
