@@ -16,7 +16,7 @@ const importData = async () => {
 
 		await Todo.insertMany(todos);
 
-		console.log(`Data Imported!`);
+		console.debug(`Data Imported!`);
 		process.exit();
 	} catch (error) {
 		console.error(`${error}`);
@@ -29,7 +29,7 @@ const destroyData = async () => {
 		await Todo.deleteMany();
 		await Email.deleteMany();
 
-		console.log(`Data Destroyed!`);
+		console.debug(`Data Destroyed!`);
 		process.exit();
 	} catch (error) {
 		console.error(`${error}`);

@@ -64,7 +64,7 @@ export const updateTodo = async (request, response, next) => {
 		);
 		response.status(200).json({ success: true, data: updateTodo });
 	} catch (error) {
-		console.log(error.message);
+		response.status(500).json({ success: false, error: error.message });
 	}
 };
 
@@ -79,6 +79,6 @@ export const deleteTodo = async (request, response, next) => {
 			.status(200)
 			.json({ success: true, message: 'Todo deleted!', data: {} });
 	} catch (error) {
-		console.log(error.message);
+		response.status(500).json({ success: false, error: error.message });
 	}
 };
