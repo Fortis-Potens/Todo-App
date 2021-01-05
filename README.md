@@ -1,6 +1,6 @@
 # Todo-App
 
-[![Fortis-Potens](https://circleci.com/gh/Fortis-Potens/Todo-App.svg?style=svg)](https://app.circleci.com/pipelines/github/Fortis-Potens/Todo-App)
+[![Fortis-Potens](https://circleci.com/gh/Fortis-Potens/Todo-App.svg?style=svg)](https://app.circleci.com/pipelines/github/fortispotens/Todo-App)
 
 <hr />
 A simple Nodejs Todo RESTful API application
